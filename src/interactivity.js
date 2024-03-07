@@ -39,8 +39,8 @@ gui.closed = window.innerWidth < 600;
 
 let image = gui.add(opts, 'image', { 
   Face: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/39255/face.png', 
-  Logo: 'http://brokensquare.com/Code/assets/logo.svg',
-  shshaw: 'http://brokensquare.com/Code/assets/head.svg',
+  Logo: 'https://brokensquare.com/Code/assets/logo.svg',
+  shshaw: 'https://brokensquare.com/Code/assets/head.svg',
   Lion: 'https://unsplash.it/400/400?image=1074',
   Water: 'https://unsplash.it/400/400?image=1053', 
   YellowCurtain: 'https://unsplash.it/400/400?image=855', 

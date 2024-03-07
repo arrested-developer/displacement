@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
-import * as dat from "dat.gui";
 import { Elastic } from "gsap/esm/TweenMax";
+import { performance } from 'perf_hooks';
+import imagePng from './image.png';
 
 console.clear();
 
@@ -10,53 +11,15 @@ let spacingX = 5;
 let spacingY = 5;
 
 let opts = {
-  image: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/39255/face.png',
+  image: imagePng,
   pointsX: 50, 
   pointsY: 50,
   
   pointCount: 50,
   
   brushSize: 30,
-  
-  randomImage(){
-    this.image = 'https://unsplash.it/400/400?image=' + Math.floor(Math.random() * 1100);
-    if ( cloth ) { cloth.randomize(loadTexture); }
-    else { loadTexture(); }
-  },
-  reset(){
-    if ( cloth ) { cloth.reset(); }
-  },
-
-  randomizePoints(){
-    if ( cloth ) { cloth.randomize(); }
-  }
 };
 
-/*////////////////////////////////////////*/
-
-let gui = new dat.GUI();
-gui.closed = window.innerWidth < 600;
-
-let image = gui.add(opts, 'image', { 
-  Face: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/39255/face.png', 
-  Logo: 'https://brokensquare.com/Code/assets/logo.svg',
-  shshaw: 'https://brokensquare.com/Code/assets/head.svg',
-  Lion: 'https://unsplash.it/400/400?image=1074',
-  Water: 'https://unsplash.it/400/400?image=1053', 
-  YellowCurtain: 'https://unsplash.it/400/400?image=855', 
-  Tunnel: 'https://unsplash.it/400/400?image=137'
-});
-image.onChange(loadTexture);
-
-
-let pointCount = gui.add(opts, 'pointCount', 20,80).step(1);
-pointCount.onFinishChange((val)=>{
-  opts.pointsX = opts.pointsY = val;
-  loadTexture();
-});
-
-
-/*////////////////////////////////////////*/
 
 let mouse = {
   down: false,
@@ -79,15 +42,6 @@ function updateBrush(){
 
 updateBrush();
 
-let influence = gui.add(opts, 'brushSize', 0, 100).step(1);
-influence.onChange(updateBrush);
-
-let random = gui.add(opts, 'randomImage');
-let randomize = gui.add(opts, 'randomizePoints');
-let reset = gui.add(opts, 'reset');
-
-/*////////////////////////////////////////*/
-
 let stage = new PIXI.Container();
 stage.addChild(brush);
 
@@ -95,9 +49,6 @@ let renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight, { 
 
 document.body.appendChild(renderer.view);
 renderer.render(stage);
-
-
-/*////////////////////////////////////////*/
 
 function loadTexture() {
 

@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import * as dat from "dat.gui";
-import {Elastic} from "gsap/esm/TweenMax";
+import { Elastic } from "gsap/esm/TweenMax";
 
 console.clear();
 
